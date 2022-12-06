@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -16,8 +17,9 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@NotEmpty
 	@Size(min = 2, max = 2)
-	private String ISOCode;
+	private String isoCode;
 	
 	@NotBlank
 	private String city;
@@ -34,12 +36,15 @@ public class Address {
 	private double latitude;
 	
 	private double longitude;
+	
+//	@OneToMany(mappedBy = "address")
+//	private List<Milestone> milestone;
 
-	public Address(long id, @Size(min = 2, max = 2) String iSOCode, @NotBlank String city, @NotBlank String street,
+	public Address(long id, @Size(min = 2, max = 2) String isoCode, @NotBlank String city, @NotBlank String street,
 			@NotBlank @Size(min = 4) String postCode, String houseNumber, double latitude, double longitude) {
 		super();
 		this.id = id;
-		ISOCode = iSOCode;
+		this.isoCode = isoCode;
 		this.city = city;
 		this.street = street;
 		this.postCode = postCode;
@@ -56,12 +61,12 @@ public class Address {
 		this.id = id;
 	}
 
-	public String getISOCode() {
-		return ISOCode;
+	public String getIsoCode() {
+		return isoCode;
 	}
 
-	public void setISOCode(String iSOCode) {
-		ISOCode = iSOCode;
+	public void setIsoCode(String isoCode) {
+		this.isoCode = isoCode;
 	}
 
 	public String getCity() {

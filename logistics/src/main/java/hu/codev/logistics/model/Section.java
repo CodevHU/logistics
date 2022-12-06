@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Min;
 
 @Entity
@@ -14,10 +15,10 @@ public class Section {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@ManyToMany
+	@ManyToOne
 	private Milestone fromMilestone;
 	
-	@ManyToMany
+	@ManyToOne
 	private Milestone toMilestone;
 	
 	@Min(0)
