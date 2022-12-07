@@ -32,6 +32,8 @@ public class AddressDTO {
 	private double latitude;
 	
 	private double longitude;
+	
+	public AddressDTO() {};
 
 	public AddressDTO(long id, @NotEmpty @Size(min = 2, max = 2) String isoCode, @NotBlank String city, @NotBlank String street,
 			@NotBlank @Size(min = 4) String postCode, String houseNumber, double latitude, double longitude) {
