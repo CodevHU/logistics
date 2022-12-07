@@ -19,4 +19,13 @@ public class CustomExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body(myError);
 	}
+	
+	@ExceptionHandler(IdMustBeEmptyException.class)
+	public ResponseEntity<MyError> handleIdIsNotEmpty(IdMustBeEmptyException e, WebRequest req){
+		
+		MyError myError = new MyError(e.getMessage(), 1003);
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+				.body(myError);
+	}
 }
