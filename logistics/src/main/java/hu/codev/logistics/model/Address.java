@@ -37,8 +37,7 @@ public class Address {
 	
 	private double longitude;
 	
-//	@OneToMany(mappedBy = "address")
-//	private List<Milestone> milestone;
+	public Address() {};
 
 	public Address(long id, @Size(min = 2, max = 2) String isoCode, @NotBlank String city, @NotBlank String street,
 			@NotBlank @Size(min = 4) String postCode, String houseNumber, double latitude, double longitude) {
