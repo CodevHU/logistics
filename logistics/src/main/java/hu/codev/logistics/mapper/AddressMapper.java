@@ -10,9 +10,9 @@ import hu.codev.logistics.model.Address;
 @Mapper(componentModel = "spring")
 public interface AddressMapper {
 
-	Address dtoToAddress(AddressDTO address);
+	Address dtoToAddress(AddressDTO addressDTO);
 
-	AddressDTO addressToDto(Address newAddress);
+	AddressDTO addressToDto(Address address);
 
 	List<AddressDTO> addressesToDtos(List<Address> addresses);
 

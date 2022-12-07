@@ -3,7 +3,9 @@ package hu.codev.logistics.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import hu.codev.logistics.exception.IdMustBeEmptyException;
 import hu.codev.logistics.model.Address;
@@ -18,17 +20,31 @@ public class AddressService {
 
 	@Transactional
 	public Address create(Address address) {
-		
-		System.out.println(address.getId());
-		
-		if(address.getId() != 0)
+
+		if (address.getId() != 0)
 			throw new IdMustBeEmptyException();
-		
+
 		return addressRepository.save(address);
 	}
 
 	public List<Address> getAll() {
 		return addressRepository.findAll();
 	}
-	
+
+	public Address getById(long id) {
+
+		Address address = addressRepository.findById(id)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+		return address;
+	}
+
+	public boolean delete(long id) {
+
+		addressRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+		addressRepository.deleteById(id);
+
+		return true;
+	}
+
 }
