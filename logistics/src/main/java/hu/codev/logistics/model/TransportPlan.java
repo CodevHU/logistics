@@ -5,8 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class TransportPlan {
@@ -15,16 +14,13 @@ public class TransportPlan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotEmpty
-	@Min(1)
+	@Positive
 	private long amount;
 	
-	@NotEmpty
 	@ManyToOne
 	private Section section;
 
-	public TransportPlan(long id, @NotEmpty @Min(1) long amount, @NotEmpty Section section) {
-		super();
+	public TransportPlan(long id, @Positive long amount, Section section) {
 		this.id = id;
 		this.amount = amount;
 		this.section = section;

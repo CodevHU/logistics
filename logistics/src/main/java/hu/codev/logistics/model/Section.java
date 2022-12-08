@@ -24,7 +24,6 @@ public class Section {
 	private long number;
 
 	public Section(long id, Milestone fromMilestone, Milestone toMilestone, @Min(0) long number) {
-		super();
 		this.id = id;
 		this.fromMilestone = fromMilestone;
 		this.toMilestone = toMilestone;
