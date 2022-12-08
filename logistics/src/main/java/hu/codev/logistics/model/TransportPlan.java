@@ -1,10 +1,13 @@
 package hu.codev.logistics.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Positive;
 
 @Entity
@@ -17,15 +20,15 @@ public class TransportPlan {
 	@Positive
 	private long amount;
 	
-	@ManyToOne
-	private Section section;
+	@OneToMany(mappedBy = "transportPlan")
+	List<Section> sections = new ArrayList<>();
 
 	public TransportPlan() {}
 	
-	public TransportPlan(long id, @Positive long amount, Section section) {
+	public TransportPlan(long id, @Positive long amount, List<Section> section) {
 		this.id = id;
 		this.amount = amount;
-		this.section = section;
+		this.sections = section;
 	}
 
 	public long getId() {
@@ -44,12 +47,12 @@ public class TransportPlan {
 		this.amount = amount;
 	}
 
-	public Section getSection() {
-		return section;
+	public List<Section> getSections() {
+		return sections;
 	}
 
-	public void setSection(Section section) {
-		this.section = section;
+	public void setSections(List<Section> section) {
+		this.sections = section;
 	}
 	
 	

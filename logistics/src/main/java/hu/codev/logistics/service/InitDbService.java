@@ -46,21 +46,21 @@ public class InitDbService{
 		Milestone milestone3 = milestoneRepository.save(new Milestone(0L, address3, LocalDateTime.now().plusDays(7)));
 		Milestone milestone4 = milestoneRepository.save(new Milestone(0L, address4, LocalDateTime.now().plusDays(8)));
 		
-		Section section1 = sectionRepository.save(new Section(0L, milestone1, milestone2, 0));
-		Section section2 = sectionRepository.save(new Section(0L, milestone3, milestone4, 1));
+		Milestone milestone5 = milestoneRepository.save(new Milestone(0L, address3, LocalDateTime.now().plusDays(7)));
+		Milestone milestone6 = milestoneRepository.save(new Milestone(0L, address4, LocalDateTime.now().plusDays(8)));
 		
-		Section section3 = sectionRepository.save(new Section(0L, milestone1, milestone4, 0));
-		Section section4 = sectionRepository.save(new Section(0L, milestone3, milestone2, 1));
+		TransportPlan transport1 = transportPlanRepository.save(new TransportPlan(0L, 380000, null));
+		TransportPlan transport2 = transportPlanRepository.save(new TransportPlan(0L, 780000, null));
 		
-		Section section5 = sectionRepository.save(new Section(0L, milestone3, milestone1, 0));
-		Section section6 = sectionRepository.save(new Section(0L, milestone2, milestone4, 1));
+		sectionRepository.save(new Section(0L, milestone1, milestone2, transport1, 0));
+		sectionRepository.save(new Section(0L, milestone3, milestone4, transport1, 1));
+		sectionRepository.save(new Section(0L, milestone1, milestone4, transport1, 2));
 		
-		transportPlanRepository.save(new TransportPlan(0L, 380000, section1));
-		transportPlanRepository.save(new TransportPlan(0L, 780000, section2));
-		transportPlanRepository.save(new TransportPlan(0L, 1180000, section3));
-		transportPlanRepository.save(new TransportPlan(0L, 220000, section4));
-		transportPlanRepository.save(new TransportPlan(0L, 120000, section5));
-		transportPlanRepository.save(new TransportPlan(0L, 600000, section6));
+		sectionRepository.save(new Section(0L, milestone3, milestone2, transport2, 0));
+		sectionRepository.save(new Section(0L, milestone3, milestone1, transport2, 1));
+		sectionRepository.save(new Section(0L, milestone2, milestone4, transport2, 2));
+		sectionRepository.save(new Section(0L, milestone5, milestone6, transport2, 3));
+		
 		
 	}
 	

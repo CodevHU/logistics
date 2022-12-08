@@ -9,6 +9,7 @@ import hu.codev.logistics.dto.DelayDTO;
 import hu.codev.logistics.model.Milestone;
 import hu.codev.logistics.model.TransportPlan;
 import hu.codev.logistics.repository.MilestoneRepository;
+import hu.codev.logistics.repository.SectionRepository;
 import hu.codev.logistics.repository.TransportPlanRepository;
 import jakarta.transaction.Transactional;
 
@@ -21,13 +22,16 @@ public class TransportPlanService {
 	@Autowired
 	MilestoneRepository milestoneRepository;
 	
+	@Autowired
+	SectionRepository sectionRepository;
+	
 	@Transactional
 	public TransportPlan delay(long id, DelayDTO delay) {
 		
-		transportPlanRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	 	TransportPlan transportPlan = transportPlanRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 		Milestone milestone = milestoneRepository.findById(delay.getMilestoneId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 		
-		if(transportPlanRepository.countTransportPlanByMilestone(id,milestone) == 0)
+		if(sectionRepository.countByTransportPlanAndFromMilestoneOrToMilestone(transportPlan,milestone,milestone) == 0)
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		
 		

@@ -20,6 +20,9 @@ public class Section {
 	@ManyToOne
 	private Milestone toMilestone;
 	
+	@ManyToOne
+	private TransportPlan transportPlan;
+	
 	@Min(0)
 	private long number;
 
@@ -30,6 +33,24 @@ public class Section {
 		this.fromMilestone = fromMilestone;
 		this.toMilestone = toMilestone;
 		this.number = number;
+	}
+
+	public Section(long id, Milestone fromMilestone, Milestone toMilestone, TransportPlan transportPlan,
+			@Min(0) long number) {
+		super();
+		this.id = id;
+		this.fromMilestone = fromMilestone;
+		this.toMilestone = toMilestone;
+		this.transportPlan = transportPlan;
+		this.number = number;
+	}
+
+	public TransportPlan getTransportPlan() {
+		return transportPlan;
+	}
+
+	public void setTransportPlan(TransportPlan transportPlan) {
+		this.transportPlan = transportPlan;
 	}
 
 	public long getId() {
