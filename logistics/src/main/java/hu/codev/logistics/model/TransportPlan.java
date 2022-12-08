@@ -20,6 +20,8 @@ public class TransportPlan {
 	@ManyToOne
 	private Section section;
 
+	public TransportPlan() {}
+	
 	public TransportPlan(long id, @Positive long amount, Section section) {
 		this.id = id;
 		this.amount = amount;

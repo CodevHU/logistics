@@ -23,6 +23,8 @@ public class Section {
 	@Min(0)
 	private long number;
 
+	public Section() {}
+	
 	public Section(long id, Milestone fromMilestone, Milestone toMilestone, @Min(0) long number) {
 		this.id = id;
 		this.fromMilestone = fromMilestone;

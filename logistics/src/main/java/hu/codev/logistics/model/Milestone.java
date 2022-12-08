@@ -22,6 +22,8 @@ public class Milestone {
 	@Future
 	private LocalDateTime plannedTime;
 
+	public Milestone() {}
+	
 	public Milestone(long id, Address address, LocalDateTime plannedTime) {
 		super();
 		this.id = id;
