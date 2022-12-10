@@ -1,7 +1,9 @@
 package hu.codev.logistics.dto;
 
-import org.hibernate.annotations.ManyToAny;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -13,16 +15,15 @@ public class TransportPlanDTO {
 	@Min(1)
 	private long amount;
 	
-	@NotEmpty
-	@ManyToAny
-	private SectionDTO section;
+	@OneToMany(mappedBy = "transportPlan")
+	List<SectionDTO> sections = new ArrayList<>();
 	
 	public TransportPlanDTO() {}
 
-	public TransportPlanDTO(long id, @NotEmpty @Min(1) long amount, @NotEmpty SectionDTO section) {
+	public TransportPlanDTO(long id, @NotEmpty @Min(1) long amount, @NotEmpty List<SectionDTO> sections) {
 		this.id = id;
 		this.amount = amount;
-		this.section = section;
+		this.sections = sections;
 	}
 
 	public long getId() {
@@ -41,12 +42,12 @@ public class TransportPlanDTO {
 		this.amount = amount;
 	}
 
-	public SectionDTO getSection() {
-		return section;
+	public List<SectionDTO> getSections() {
+		return sections;
 	}
 
-	public void setSection(SectionDTO section) {
-		this.section = section;
+	public void setSections(List<SectionDTO> sections) {
+		this.sections = sections;
 	}
 	
 }

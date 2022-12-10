@@ -25,10 +25,10 @@ public class TransportPlan {
 
 	public TransportPlan() {}
 	
-	public TransportPlan(long id, @Positive long amount, List<Section> section) {
+	public TransportPlan(long id, @Positive long amount, List<Section> sections) {
 		this.id = id;
 		this.amount = amount;
-		this.sections = section;
+		this.sections = sections;
 	}
 
 	public long getId() {
