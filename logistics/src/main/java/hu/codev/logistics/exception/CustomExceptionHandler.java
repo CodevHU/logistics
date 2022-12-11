@@ -28,4 +28,12 @@ public class CustomExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body(myError);
 	}
+	
+	@ExceptionHandler(DeleteIdNotIssetException.class)
+	public ResponseEntity<MyError> handleIdEmptyResultDataAccessException(DeleteIdNotIssetException e, WebRequest req){
+		
+		return ResponseEntity.status(HttpStatus.OK).build();
+	}
+	
+	
 }

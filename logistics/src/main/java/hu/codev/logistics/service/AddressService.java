@@ -5,17 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.server.ResponseStatusException;
 
+import hu.codev.logistics.exception.DeleteIdNotIssetException;
 import hu.codev.logistics.exception.IdMustBeEmptyException;
 import hu.codev.logistics.model.Address;
-import hu.codev.logistics.model.Address_;
 import hu.codev.logistics.repository.AddressRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -48,6 +46,10 @@ public class AddressService {
 	}
 
 	public void delete(long id) {
+		
+		addressRepository.findById(id)
+				.orElseThrow(() -> new DeleteIdNotIssetException());
+		
 		addressRepository.deleteById(id);
 	}
 
