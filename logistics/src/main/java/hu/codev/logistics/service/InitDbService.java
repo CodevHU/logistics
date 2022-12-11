@@ -54,12 +54,9 @@ public class InitDbService{
 		
 		sectionRepository.save(new Section(0L, milestone1, milestone2, transport1, 0));
 		sectionRepository.save(new Section(0L, milestone3, milestone4, transport1, 1));
-		sectionRepository.save(new Section(0L, milestone1, milestone4, transport1, 2));
 		
-		sectionRepository.save(new Section(0L, milestone3, milestone2, transport2, 0));
-		sectionRepository.save(new Section(0L, milestone3, milestone1, transport2, 1));
-		sectionRepository.save(new Section(0L, milestone2, milestone4, transport2, 2));
-		sectionRepository.save(new Section(0L, milestone5, milestone6, transport2, 3));
+		sectionRepository.save(new Section(0L, milestone2, milestone1, transport2, 0));
+		sectionRepository.save(new Section(0L, milestone4, milestone3, transport2, 1));
 		
 		
 	}
